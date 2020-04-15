@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "free-throws": {
+      "hosting": {
+        "material-dashboard-angular": [
+          "free-throws"
+        ]
+      }
+    }
+  }
+}
