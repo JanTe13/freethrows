@@ -1,0 +1,11 @@
+i.shot {
+    font-size: 10px;
+}
+
+i.shot.missed {
+    color: red;
+}
+
+i.shot.made {
+    color: green;
+}
