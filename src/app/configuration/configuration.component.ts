@@ -12,4 +12,8 @@ export class ConfigurationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  saveConfiguration() {
+    console.log("Configuració guardada");
+  }
+
 }

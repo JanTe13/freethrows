@@ -22,7 +22,7 @@ export class TableListComponent implements OnInit {
 
   showFormatedFreeThrows(participant: Participant, jornada: number): string {
     if (participant.getSequenciaTirsLliuresJornada(jornada) == null) return "-";
-    return participant.getTotalTirsLliuresJornada(jornada) + '-' + participant.getSequenciaTirsLliuresJornada(jornada);
+    return participant.getTotalTirsLliuresJornada(jornada).toString();
   }
 
   private addFreeThrowsToParticipants(lliures: Tir[]): void {

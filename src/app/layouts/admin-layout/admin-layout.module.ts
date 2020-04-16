@@ -12,6 +12,7 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
+import { ConfigurationComponent } from 'app/configuration/configuration.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import {MatSelectModule} from '@angular/material/select';
   declarations: [
     DashboardComponent,
     UserProfileComponent,
-    TableListComponent
+    ConfigurationComponent
   ]
 })
 

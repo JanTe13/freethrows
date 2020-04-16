@@ -46,6 +46,9 @@
                                         </td>
                                         <td *ngFor="let jornada of jornades; let i = index">
                                             {{ showFormatedFreeThrows(participant, i + 1) }}
+                                            <!-- <app-shot-sequence                     
+                                                [shotSequence]="participant.getSequenciaTirsLliuresJornada(i + 1)"
+                                            ></app-shot-sequence> -->
                                         </td>
                                         <td class="text-info">
                                             {{ participant.totalTirsLliures }}
