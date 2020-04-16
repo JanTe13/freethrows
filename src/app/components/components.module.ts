@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ShotSequenceComponent } from './shot-sequence/shot-sequence.component';
+import { SortArrowsComponent } from './sort-arrows/sort-arrows.component';
 
 @NgModule({
   imports: [
@@ -16,13 +17,15 @@ import { ShotSequenceComponent } from './shot-sequence/shot-sequence.component';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    ShotSequenceComponent
+    ShotSequenceComponent,
+    SortArrowsComponent
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    ShotSequenceComponent
+    ShotSequenceComponent,
+    SortArrowsComponent
   ]
 })
 export class ComponentsModule { }

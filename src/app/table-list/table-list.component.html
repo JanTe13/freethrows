@@ -12,22 +12,28 @@
                             <table class="table">
                                 <thead class=" text-info">
                                     <th>
-                                        Codi
+                                        <span (click)="sortList('codi')" class="sort-field">Codi</span> 
+                                        <app-sort-arrows [isDesc]="getCurrentSortType('codi')"></app-sort-arrows>
                                     </th>
                                     <th>
-                                        Nom
+                                        <span (click)="sortList('nom')" class="sort-field">Nom</span>
+                                        <app-sort-arrows [isDesc]="getCurrentSortType('nom')"></app-sort-arrows>
                                     </th>
                                     <th>
-                                        Sexe
+                                        <span (click)="sortList('sexe')" class="sort-field">Sexe</span>
+                                        <app-sort-arrows [isDesc]="getCurrentSortType('sexe')"></app-sort-arrows>
                                     </th>
                                     <th>
-                                        Curs
+                                        <span (click)="sortList('curs')" class="sort-field">Curs</span>
+                                        <app-sort-arrows [isDesc]="getCurrentSortType('curs')"></app-sort-arrows>
                                     </th>
                                     <th *ngFor="let jornada of jornades; let i = index">
-                                        {{i + 1}}
+                                        <span (click)="sortList('getSequenciaTirsLliuresJornada', {jornada: i + 1})" class="sort-field">{{i + 1}}</span>
+                                        <app-sort-arrows [isDesc]="getCurrentSortType(i + 1)"></app-sort-arrows>
                                     </th>
                                     <th>
-                                        Total
+                                        <span (click)="sortList('totalTirsLliures')" class="sort-field">Total</span>
+                                        <app-sort-arrows [isDesc]="getCurrentSortType('totalTirsLliures')"></app-sort-arrows>
                                     </th>
                                 </thead>
                                 <tbody>
