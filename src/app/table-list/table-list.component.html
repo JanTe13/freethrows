@@ -24,7 +24,7 @@
                                         Curs
                                     </th>
                                     <th *ngFor="let jornada of jornades; let i = index">
-                                        {{i}}
+                                        {{i + 1}}
                                     </th>
                                     <th>
                                         Total
@@ -44,11 +44,11 @@
                                         <td>
                                             {{participant.curs}}
                                         </td>
-                                        <td *ngFor="let jornada of jornades">
-                                            {{participant.tirs_lliures && participant.tirs_lliures[jornada.nom] ? participant.tirs_lliures[jornada.nom] : "-"}}
+                                        <td *ngFor="let jornada of jornades; let i = index">
+                                            {{ showFormatedFreeThrows(participant, i + 1) }}
                                         </td>
                                         <td class="text-info">
-                                            {{ getFreeThrowsSum(participant) }}
+                                            {{ participant.totalTirsLliures }}
                                         </td>
                                     </tr>
                                 </tbody>

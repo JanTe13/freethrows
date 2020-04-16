@@ -20,6 +20,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { environment } from '../environments/environment';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    ConfigurationComponent,
 
   ],
   providers: [],
