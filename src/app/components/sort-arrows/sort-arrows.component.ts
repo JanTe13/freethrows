@@ -14,4 +14,8 @@ export class SortArrowsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getArrow(): string {
+    return this.isDesc ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+  }
+
 }

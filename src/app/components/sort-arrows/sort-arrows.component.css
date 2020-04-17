@@ -1,0 +1,8 @@
+i.hide {
+    visibility: hidden;
+}
+
+i.arrows {
+    display: inline;
+    vertical-align: bottom;
+}
