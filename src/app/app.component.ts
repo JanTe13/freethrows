@@ -15,9 +15,7 @@ export class AppComponent {
     this._ds.loadConfiguration().then(res => {
       res.forEach(c => {
         let config = c.payload.toJSON();
-        if (this._gss[c['key']] != null) {
-          this._gss[c['key']] = config;
-        }
+        this._gss[c['key']] = config;
       })
     })
     .catch(error => console.log(error));

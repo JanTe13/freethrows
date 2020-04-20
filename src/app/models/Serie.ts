@@ -62,4 +62,8 @@ export class Serie {
         return this._percentatge;
     }
 
+    public getTir(index: number): number {
+        return parseInt(this.sequencia.split('')[index]);
+    }
+
 }

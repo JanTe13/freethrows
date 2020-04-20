@@ -1,6 +1,7 @@
 i.shot {
-    font-size: 15px;
+    font-size: 17px;
     margin-right: 5px;
+    cursor: default;
 }
 
 i.shot.missed {
@@ -9,4 +10,12 @@ i.shot.missed {
 
 i.shot.made {
     color: #17ca17;
+}
+
+i.shot.regular {
+    color: orange;
+}
+
+i.shot.good {
+    color: #ffe100;
 }

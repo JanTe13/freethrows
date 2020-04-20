@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalFunctionsService {
 
-  constructor() { }
+  constructor(private _decimalPipe: DecimalPipe) { }
 
   sortArray(array: any[], field: string, param?: any, desc: boolean = true) {
     array.sort((a, b) => {
@@ -17,5 +18,9 @@ export class GlobalFunctionsService {
       }
       return 0;
     });
+  }
+
+  decimalRound(value: number, round: string = '1.0-1'): string {
+    return this._decimalPipe.transform(value, round);
   }
 }
