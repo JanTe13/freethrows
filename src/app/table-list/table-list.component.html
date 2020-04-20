@@ -5,7 +5,6 @@
                 <div class="card">
                     <div class="card-header card-header-info">
                         <h4 class="card-title ">Llistat general</h4>
-                        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -28,8 +27,8 @@
                                         <app-sort-arrows [isDesc]="getCurrentSortType('curs')"></app-sort-arrows>
                                     </th>
                                     <th *ngFor="let jornada of jornades; let i = index">
-                                        <span (click)="sortList('getSequenciaTirsLliuresJornada', {jornada: i + 1})" class="sort-field">{{i + 1}}</span>
-                                        <app-sort-arrows [isDesc]="getCurrentSortType(i + 1)"></app-sort-arrows>
+                                        <span (click)="sortList('getSequenciaTirsLliures', {index: i}, 'index')" class="sort-field">{{i + 1}}</span>
+                                        <app-sort-arrows [isDesc]="getCurrentSortType(i)"></app-sort-arrows>
                                     </th>
                                     <th>
                                         <span (click)="sortList('totalTirsLliures')" class="sort-field">Total</span>
@@ -37,7 +36,7 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let participant of participants">
+                                    <tr *ngFor="let participant of participants" (click)="goToParticipant(participant)" class="participant-row">
                                         <td>
                                             {{participant.codi}}
                                         </td>
@@ -51,13 +50,10 @@
                                             {{participant.curs}}
                                         </td>
                                         <td *ngFor="let jornada of jornades; let i = index">
-                                            {{ showFormatedFreeThrows(participant, i + 1) }}
-                                            <!-- <app-shot-sequence                     
-                                                [shotSequence]="participant.getSequenciaTirsLliuresJornada(i + 1)"
-                                            ></app-shot-sequence> -->
+                                            {{ showFormatedFreeThrows(participant, i) }}
                                         </td>
                                         <td class="text-info">
-                                            {{ participant.totalTirsLliures }}
+                                            {{participant.totalTirsLliures}}
                                         </td>
                                     </tr>
                                 </tbody>

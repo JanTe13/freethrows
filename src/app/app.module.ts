@@ -14,13 +14,19 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
+import { ParticipantProfileComponent } from './participant-profile/participant-profile.component';
 import { TableListComponent } from './table-list/table-list.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpModule,
     ComponentsModule,
     RouterModule,
@@ -31,10 +37,10 @@ import { TableListComponent } from './table-list/table-list.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    ParticipantProfileComponent,
     TableListComponent
-
   ],
-  providers: [],
+  providers: [DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

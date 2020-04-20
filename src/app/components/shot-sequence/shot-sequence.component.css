@@ -1,5 +1,6 @@
 i.shot {
-    font-size: 10px;
+    font-size: 15px;
+    margin-right: 5px;
 }
 
 i.shot.missed {
@@ -7,5 +8,5 @@ i.shot.missed {
 }
 
 i.shot.made {
-    color: green;
+    color: #17ca17;
 }

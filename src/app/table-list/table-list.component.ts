@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'app/services/data.service';
-import { Tir } from 'app/models/tir';
+import { Serie } from 'app/models/Serie';
 import { Participant } from 'app/models/participant';
 import { GlobalStateService } from 'app/services/global-state.service';
 import { GlobalFunctionsService } from 'app/services/global-functions.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-list',
@@ -18,22 +19,25 @@ export class TableListComponent implements OnInit {
   private _currentSortField: string;
   private _currentSortType: boolean;
 
-  constructor(private _ds: DataService, private _gss: GlobalStateService, private _gfs: GlobalFunctionsService) {
+  constructor(private _ds: DataService, 
+    private _gss: GlobalStateService, 
+    private _gfs: GlobalFunctionsService, 
+    private router: Router) {
     this.loadGeneralListData();
   }
 
   ngOnInit() {
   }
 
-  showFormatedFreeThrows(participant: Participant, jornada: number): string {
-    if (participant.getSequenciaTirsLliuresJornada(jornada) == null) return "-";
-    return participant.getTotalTirsLliuresJornada(jornada).toString();
+  showFormatedFreeThrows(participant: Participant, index: number): string {
+    if (!participant.seriesTLL[index] || participant.seriesTLL[index].tirats == 0) return "-";
+    return participant.getTirsLliuresAnotats(index).toString();
   }
 
-  sortList(field: string, params?: any): void {
-    let auxField: string = params ? params['jornada'] : field;
+  sortList(field: string, params?: any, paramName?: string): void {
+    let auxField: string = params ? params[paramName] : field;
     this._currentSortType = (auxField === this._currentSortField ? !this._currentSortType : true);
-    this._gfs.sortArray(this.participants, field, params ? params['jornada']: null, this._currentSortType);
+    this._gfs.sortArray(this.participants, field, params ? params[paramName]: null, this._currentSortType);
     this._currentSortField = auxField;
   }
 
@@ -41,27 +45,15 @@ export class TableListComponent implements OnInit {
     return this._currentSortField === field ? this._currentSortType : null;
   }
 
-  private addFreeThrowsToParticipants(lliures: Tir[]): void {
-    lliures.forEach(ll => {
-      let index = this.participants.findIndex(p => p.codi === ll.codiParticipant);
-      if (index >= 0) {
-        this.participants[index].addSequenciaTirsLliuresJornada(ll);
-      }
-    });
+  goToParticipant(participant: Participant) {
+    this.router.navigate(['/participant', { codi: participant.codi }]);
   }
 
   private loadGeneralListData() {
     // Càrrega de participants
-    this._ds.getAllParticipants().then(res => {
-      this.participants = res;
-      // Càrrega de tirs lliures
-      this._ds.getAllFreeThrows().then(res => {
-        this.addFreeThrowsToParticipants(res);
-      })
-      .catch(error => console.log(error));
-    })
+    this._ds.getAllParticipantsWithFreeThrows().then(res => this.participants = res)
     .catch(error => console.log(error));
-
+    
     // Càrrega de jornades
     this.jornades = this._gss.jornades;
   }

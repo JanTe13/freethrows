@@ -1,3 +1,11 @@
 span.sort-field {
     cursor: pointer;
 }
+
+tr.participant-row {
+    cursor: pointer;
+}
+
+tr.participant-row:hover {
+    background-color: azure;
+}

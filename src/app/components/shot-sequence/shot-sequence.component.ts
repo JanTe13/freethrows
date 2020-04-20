@@ -9,15 +9,16 @@ export class ShotSequenceComponent implements OnInit {
 
   public shots: number[];
   @Input() set shotSequence(value: string) {
-    this.shots = value ? this.convertSequence(value) : [];
+    this.shots = value ? this.convertToArray(value): [];
   };
+  @Input() shotsPercentage: number[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  private convertSequence(sequence: string): number[] {
+  private convertToArray(sequence: string): number[] {
     let res: number[] = [];
     for (let shot of sequence) {
       res.push(parseInt(shot));

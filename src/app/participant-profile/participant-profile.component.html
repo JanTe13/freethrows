@@ -1,0 +1,126 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card-header card-header-info">
+                                <h4 class="card-title">Participant<strong style="margin-left: 15px;">{{participant?.nom}}</strong></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <!-- <div class=col-md-2>
+                                    <div class="card-avatar">
+                                        <a href="javascript:void(0)">
+                                            <img class="img" src="./assets/img/faces/marc.jpg" />
+                                        </a>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-5">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nom" type="text" [value]="participant?.nom" disabled>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Codi" type="text" [value]="participant?.codi" disabled>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Curs" type="text" [value]="participant?.curs" disabled>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Sexe" type="text" [value]="participant?.sexe" disabled>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-1">
+                                    <i class="material-icons edit" title="Edita">create</i>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card-header card-header-info">
+                                <h4 class="card-title">Estadístiques</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead class=" text-info">
+                                <th></th>
+                                <th>
+                                    <span>Tirs</span>
+                                </th>
+                                <th>
+                                    <span>%</span>
+                                </th>
+                                <th>
+                                    <span>Sequència</span>
+                                </th>
+                                <th>
+                                    <span>Total</span>
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tirs of participant?.seriesTLL; let i = index">
+                                    <td>
+                                        <strong>{{tirs.jornada}}</strong>
+                                    </td>
+                                    <td>
+                                        {{ getFormatedTirs(tirs.jornada - 1) }}
+                                    </td>
+                                    <td>
+                                        {{ getPercentage(tirs.jornada - 1) }}
+                                    </td>
+                                    <td>
+                                        <app-shot-sequence
+                                            [shotSequence]="participant.getSequenciaTirsLliures(i)"
+                                        ></app-shot-sequence>
+                                    </td>
+                                    <td class="text-info">
+                                        {{ participant.getTirsLliuresAnotats(tirs.jornada - 1) }}
+                                    </td>
+                                </tr>
+                                <tr *ngIf="participant?.seriesTLL.length > 0">
+                                    <td>
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td>
+                                        {{ getFormatedTirs() }}
+                                    </td>
+                                    <td>
+                                        {{ getPercentage() }}
+                                    </td>
+                                    <td>
+                                        <!-- <app-shot-sequence
+                                            [shotsPercentage]="getSequenciaPercentages()"
+                                        ></app-shot-sequence> -->
+                                    </td>
+                                    <td class="text-info">
+                                        {{ participant?.getTirsLliuresAnotats() }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+  

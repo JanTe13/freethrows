@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Participant } from 'app/models/participant';
-import { Tir } from 'app/models/tir';
+import { Serie } from 'app/models/Serie';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +19,12 @@ export class ModelConversorService {
     );
   }
 
-  public jsonToFreeThrow(value: any): Tir {
+  public jsonToFreeThrow(value: any): Serie {
     let tir = value.payload.toJSON();
-    return new Tir(
+    return new Serie(
       value['key'],
       tir['codi_participant'],
-      tir['anotats'],
+      tir['sequencia'],
       tir['jornada']
     );
   }

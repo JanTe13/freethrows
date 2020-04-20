@@ -1,13 +1,13 @@
-import { Tir } from "./tir";
+import { Serie } from "./Serie";
 
 export class Participant {
     private _codi: string;
     private _nom: string;
     private _sexe: string;
     private _curs: string;
-    private _tirsLliures: any = {};
+    private _seriesTLL: Serie[] = [];
 
-    constructor(codi: string, nom: string, sexe: string, curs: string) {
+    constructor(codi?: string, nom?: string, sexe?: string, curs?: string) {
         this.codi = codi;
         this.nom = nom;
         this.sexe = sexe;
@@ -46,40 +46,42 @@ export class Participant {
         this._curs = value;
     }
 
-    get tirsLliures(): any {
-        return this._tirsLliures;
+    get seriesTLL(): Serie[] {
+        return this._seriesTLL;
     }
 
-    set tirsLliures(value: any) {
-        this._tirsLliures = value;
-    }
-
-    public getSequenciaTirsLliuresJornada(jornada: number): string {
-        return this._tirsLliures[jornada];
-    }
-
-    public getTotalTirsLliuresJornada(jornada: number): number {
-        let seq: string = this._tirsLliures[jornada];
-        let total: number = 0;
-        if (seq) {
-            for (let tir of seq) {
-                total += parseInt(tir);
-            }
-        }
-
-        return total;
+    set seriesTLL(value: Serie[]) {
+        this._seriesTLL = value;
     }
 
     get totalTirsLliures(): number {
         let total: number = 0;
-        for (let jornada in this._tirsLliures) {
-            total += this.getTotalTirsLliuresJornada(parseInt(jornada));
+        for (let t of this.seriesTLL) {
+            if (t) total += t.anotats;
         }
         return total;
     }
 
-    addSequenciaTirsLliuresJornada(lliures: Tir): void {
-        this._tirsLliures[lliures.jornada] = lliures.anotats;
+    public getSequenciaTirsLliures(index: number): string {
+        return this.seriesTLL[index] ? this.seriesTLL[index].sequencia : null;
+    }
+
+    public getTirsLliuresAnotats(index?: number): number {
+        if (index != null) return this.seriesTLL[index].anotats;
+        return this.totalTirsLliures;
+    }
+
+    getTirsLliuresTirats(index?: number): number {
+        if (index != null) this.seriesTLL[index].tirats;
+        let total: number = 0;
+        for (let t of this.seriesTLL) {
+            if (t) total += t.tirats;
+        }
+        return total;
+    }
+
+    addSequenciaTirsLliures(serie: Serie): void {
+        this.seriesTLL[serie.jornada - 1] = serie;
     }
 
 }
