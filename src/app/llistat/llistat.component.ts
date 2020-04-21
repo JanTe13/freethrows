@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'app/services/data.service';
-import { Serie } from 'app/models/Serie';
 import { Participant } from 'app/models/participant';
 import { GlobalStateService } from 'app/services/global-state.service';
 import { GlobalFunctionsService } from 'app/services/global-functions.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-table-list',
-  templateUrl: './table-list.component.html',
-  styleUrls: ['./table-list.component.css']
+  selector: 'app-llistat',
+  templateUrl: './llistat.component.html',
+  styleUrls: ['./llistat.component.css']
 })
-export class TableListComponent implements OnInit {
+export class LlistatComponent implements OnInit {
   public participants: Participant[] = [];
   public jornades: any[];
 

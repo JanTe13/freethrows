@@ -17,8 +17,3 @@ i.back {
     z-index: 1030;
     position: relative;
 }
-
-i.back:hover {
-    border-radius: 15px;
-    background-color: rgb(156, 154, 154);
-}

@@ -15,10 +15,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { ParticipantProfileComponent } from './participant-profile/participant-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
+import { LlistatComponent } from './llistat/llistat.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DecimalPipe } from '@angular/common';
+import { ActaComponent } from './acta/acta.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { DecimalPipe } from '@angular/common';
     AppComponent,
     AdminLayoutComponent,
     ParticipantProfileComponent,
-    TableListComponent
+    LlistatComponent,
+    ActaComponent
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent]
