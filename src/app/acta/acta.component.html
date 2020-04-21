@@ -1,1 +1,66 @@
-<p>acta works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Acta -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Acta</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="card" style="margin: 0 10px;">
+                                <div class="card-header">
+                                    <h6 class="card-title">Rebotejadors</h6>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card" style="margin: 20px 10px;">
+                                <div class="card-header">
+                                    <h6 class="card-title" style="display: inline;">Tirador</h6>
+                                    <h5 class="card-title" style="display: inline;">
+                                        <strong style="margin-left: 15px;">{{ participants[indexTirador]?.nom }}</strong>
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <button mat-raised-button type="submit" class="btn btn-info pull-right">Següent</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Estadístiques -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Estadístiques <strong style="margin-left: 15px;">{{ participants[indexTirador]?.nom }}</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Pendents -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Pendents</h4>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <tr *ngFor="let participant of pendents">
+                                <td>{{participant.nom}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Participant } from 'app/models/participant';
+import { DataService } from 'app/services/data.service';
 
 @Component({
   selector: 'app-acta',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActaComponent implements OnInit {
 
-  constructor() { }
+  public participants: Participant[] = [];
+  public rebotejadors: Participant[] = [];
+  public pendents: Participant[] = [];
+  public indexTirador: number = 0;
+
+  constructor(private _ds: DataService) {
+    this._ds.getAllParticipants().subscribe(res => {
+      res.forEach(participant => this.participants.push(participant));
+      res.splice(this.indexTirador, 1);
+      this.pendents = res;
+    });
+  }
 
   ngOnInit(): void {
   }
 
+  // getRebotejadors(): Participant[] {
+  //   if (this.)
+  // }
 }
