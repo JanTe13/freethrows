@@ -8,12 +8,14 @@ i.edit:hover {
 }
 
 .main-content {
-    padding-top: 15px;
+    padding-top: 0;
 }
 
 i.back {
     cursor: pointer;
     margin-bottom: 10px;
+    z-index: 1030;
+    position: relative;
 }
 
 i.back:hover {
