@@ -27,7 +27,7 @@
                                         <app-sort-arrows [isDesc]="getCurrentSortType('curs')"></app-sort-arrows>
                                     </th>
                                     <th *ngFor="let jornada of jornades; let i = index">
-                                        <span (click)="sortList('getSequenciaTirsLliures', {index: i}, 'index')" class="sort-field">{{i + 1}}</span>
+                                        <span (click)="sortList('getSequenciaTirsLliures', {index: i}, 'index')" class="sort-field">J{{i + 1}}</span>
                                         <app-sort-arrows [isDesc]="getCurrentSortType(i)"></app-sort-arrows>
                                     </th>
                                     <th>

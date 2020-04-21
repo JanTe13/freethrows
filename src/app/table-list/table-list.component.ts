@@ -51,8 +51,7 @@ export class TableListComponent implements OnInit {
 
   private loadGeneralListData() {
     // Càrrega de participants
-    this._ds.getAllParticipantsWithFreeThrows().then(res => this.participants = res)
-    .catch(error => console.log(error));
+    this._ds.getAllParticipantsWithFreeThrows().subscribe(res => this.participants = res);
     
     // Càrrega de jornades
     this.jornades = this._gss.jornades;

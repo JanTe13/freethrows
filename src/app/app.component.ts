@@ -12,13 +12,12 @@ export class AppComponent {
 
   constructor(private _ds: DataService, private _gss: GlobalStateService) {
     // Càrrega de la configuració
-    this._ds.loadConfiguration().then(res => {
+    this._ds.loadConfiguration().subscribe(res => {
       res.forEach(c => {
         let config = c.payload.toJSON();
         this._gss[c['key']] = config;
       })
-    })
-    .catch(error => console.log(error));
+    });
   }
 
 }

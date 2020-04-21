@@ -23,11 +23,10 @@ export class ParticipantProfileComponent implements OnInit {
     ) {
     this.route.paramMap.subscribe(params => {
       this.codi_participant = params.get("codi");
-      this._ds.getParticipantByCodeWithFreeThrows(this.codi_participant).then(res => {
+      this._ds.getParticipantByCodeWithFreeThrows(this.codi_participant).subscribe(res => {
         this.participant = res;
         this.generateCharts();
-      })
-      .catch(error => console.log(error));
+      });
     });
   }
 
@@ -74,7 +73,7 @@ export class ParticipantProfileComponent implements OnInit {
     let freeThrowsMade: number[] = [];
     let jornada: number = 1;
     while (jornada <= this.participant.seriesTLL.length) {
-      dataFreeThrowsChart['labels'].push(jornada);
+      dataFreeThrowsChart['labels'].push("J" + jornada);
       freeThrowsMade.push(this.participant.seriesTLL[jornada - 1].anotats);
       ++jornada;
     }

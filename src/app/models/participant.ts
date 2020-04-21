@@ -72,7 +72,7 @@ export class Participant {
     }
 
     getTirsLliuresTirats(index?: number): number {
-        if (index != null) this.seriesTLL[index].tirats;
+        if (index != null) return this.seriesTLL[index].tirats;
         let total: number = 0;
         for (let t of this.seriesTLL) {
             if (t) total += t.tirats;
