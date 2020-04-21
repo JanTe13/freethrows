@@ -1,9 +1,8 @@
 i.edit {
-    margin-top: 10px;
     float: right;
     cursor: pointer;
 }
 
 i.edit:hover {
-    color: #26c6da;
+    color: gold;
 }
