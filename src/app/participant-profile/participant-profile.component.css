@@ -6,3 +6,17 @@ i.edit {
 i.edit:hover {
     color: gold;
 }
+
+.main-content {
+    padding-top: 15px;
+}
+
+i.back {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+i.back:hover {
+    border-radius: 15px;
+    background-color: rgb(156, 154, 154);
+}

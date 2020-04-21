@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Participant } from 'app/models/participant';
 import { DataService } from 'app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalFunctionsService } from 'app/services/global-functions.service';
 import { GlobalStateService } from 'app/services/global-state.service';
 import * as Chartist from 'chartist';
@@ -18,6 +18,7 @@ export class ParticipantProfileComponent implements OnInit {
   
   constructor(private _ds: DataService, 
     private route: ActivatedRoute, 
+    private router: Router,
     private _gfs: GlobalFunctionsService,
     private _gss: GlobalStateService
     ) {
@@ -31,6 +32,10 @@ export class ParticipantProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  goToList() {
+    this.router.navigate(['/llistats']);
   }
 
   getFormatedTirs(index?: number): string {

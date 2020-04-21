@@ -8,6 +8,6 @@ import { ConfigurationComponent } from 'app/configuration/configuration.componen
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'table-list',     component: TableListComponent },
+    { path: 'llistats',     component: TableListComponent },
     { path: 'configuration',  component: ConfigurationComponent}
 ];
