@@ -28,9 +28,9 @@ export class LlistatComponent implements OnInit {
   ngOnInit() {
   }
 
-  showFormatedFreeThrows(participant: Participant, index: number): string {
-    if (!participant.seriesTLL[index] || participant.seriesTLL[index].tirats == 0) return "-";
-    return participant.getTirsLliuresAnotats(index).toString();
+  showFormatedFreeThrows(participant: Participant, jornada: number): string {
+    if (!participant.getSerieTLL(jornada) || participant.getSerieTLL(jornada).tirats == 0) return "-";
+    return participant.getTirsLliuresAnotats(jornada).toString();
   }
 
   sortList(field: string, params?: any, paramName?: string): void {

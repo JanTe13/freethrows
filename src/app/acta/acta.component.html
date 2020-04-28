@@ -31,8 +31,8 @@
                                     </h5>
                                 </div>
                                 <div class="card-body">
-                                    <app-shot-sequence [edition]="true" [shotSequence]="participant?.seriesTLL[jornada - 1].sequencia"></app-shot-sequence>
-                                    <button mat-raised-button class="btn btn-info pull-right" style="margin-top: 30px;" (click)="nextTirador()">Següent</button>
+                                    <app-shot-sequence [edition]="true" [shotSequence]="participant?.getSerieTLL(jornada).sequencia"></app-shot-sequence>
+                                    <button mat-raised-button class="btn btn-info pull-right" style="margin-top: 30px;" (click)="next()">Següent</button>
                                 </div>
                             </div>
                         </div>

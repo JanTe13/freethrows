@@ -88,4 +88,17 @@ export class DataService {
     });
   }
 
+  public saveSerie(serie: Serie): void {
+    let sequencia: any ={};
+    serie.sequencia.forEach((tir, i) => {
+      sequencia[i] = tir;
+    })
+
+    this._db.database.ref('/series/' + serie.codi).set({
+      'codi_participant': serie.codiParticipant,
+      'jornada': serie.jornada,
+      'sequencia': sequencia
+    });
+  }
+
 }

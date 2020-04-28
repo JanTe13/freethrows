@@ -81,18 +81,18 @@
                                                 <strong>J{{tirs.jornada}}</strong>
                                             </td>
                                             <td>
-                                                {{ getFormatedTirs(tirs.jornada - 1) }}
+                                                {{ getFormatedTirs(tirs.jornada) }}
                                             </td>
                                             <td>
-                                                {{ getPercentage(tirs.jornada - 1) }}
+                                                {{ getPercentage(tirs.jornada) }}
                                             </td>
                                             <td>
                                                 <app-shot-sequence
-                                                    [shotSequence]="participant.getSequenciaTirsLliures(i)"
+                                                    [shotSequence]="participant.getSequenciaTirsLliures(tirs.jornada)"
                                                 ></app-shot-sequence>
                                             </td>
                                             <td class="text-info">
-                                                {{ participant.getTirsLliuresAnotats(tirs.jornada - 1) }}
+                                                {{ participant.getTirsLliuresAnotats(tirs.jornada) }}
                                             </td>
                                         </tr>
                                         <tr *ngIf="participant?.seriesTLL.length > 0">

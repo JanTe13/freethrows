@@ -26,7 +26,7 @@ export class ActaComponent implements OnInit {
         this.participants.push(p);
         this.pendents.push(p);
       });
-      this.nextTirador();
+      this.refreshTirador();
     });
 
     this.globalSt = this._gss;
@@ -49,7 +49,13 @@ export class ActaComponent implements OnInit {
     }
   }
 
-  nextTirador(): void {
+  next(): void {
+    this._ds.saveSerie(this.participant.getSerieTLL(this.jornada));
+    console.log("Sèrie guardada correctament");
+    this.refreshTirador();
+  }
+
+  private refreshTirador(): void {
     this.participant = this.pendents[0];
     this.pendents.splice(0, 1);
     this.rebotejadors = [];

@@ -62,17 +62,17 @@ export class Participant {
         return total;
     }
 
-    public getSequenciaTirsLliures(index: number): string {
-        return this.seriesTLL[index] ? this.seriesTLL[index].sequencia : null;
+    public getSequenciaTirsLliures(jornada: number): string {
+        return this.getSerieTLL(jornada) ? this.getSerieTLL(jornada).sequencia : null;
     }
 
-    public getTirsLliuresAnotats(index?: number): number {
-        if (index != null) return this.seriesTLL[index].anotats;
+    public getTirsLliuresAnotats(jornada?: number): number {
+        if (jornada != null) return this.getSerieTLL(jornada).anotats;
         return this.totalTirsLliures;
     }
 
-    getTirsLliuresTirats(index?: number): number {
-        if (index != null) return this.seriesTLL[index].tirats;
+    getTirsLliuresTirats(jornada?: number): number {
+        if (jornada != null) return this.getSerieTLL(jornada).tirats;
         let total: number = 0;
         for (let t of this.seriesTLL) {
             if (t) total += t.tirats;
@@ -81,7 +81,17 @@ export class Participant {
     }
 
     addSerieTirsLliures(serie: Serie): void {
-        this.seriesTLL[serie.jornada - 1] = serie;
+        let index: number = this.seriesTLL.findIndex(s => s.jornada === serie.jornada);
+        if (index >= 0) {
+            this.seriesTLL[index] = serie;
+        }
+        else this.seriesTLL.push(serie);
+    }
+
+    getSerieTLL(jornada: number): Serie {
+        let index =  this.seriesTLL.findIndex(s => s.jornada === jornada);
+        if (index >= 0) return this.seriesTLL[index];
+        return null;
     }
 
 }

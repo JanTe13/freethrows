@@ -39,17 +39,17 @@ export class ParticipantProfileComponent implements OnInit {
     this.router.navigate(['/llistats']);
   }
 
-  getFormatedTirs(index?: number): string {
-    return this.participant.getTirsLliuresAnotats(index) + '/' + this.participant.getTirsLliuresTirats(index);
+  getFormatedTirs(jornada?: number): string {
+    return this.participant.getTirsLliuresAnotats(jornada) + '/' + this.participant.getTirsLliuresTirats(jornada);
   }
 
-  getPercentage(index?: number): string {
-    if (index != null) {
-      return this._gfs.decimalRound(this.participant.seriesTLL[index].percentatge) + '%';
+  getPercentage(jornada?: number): string {
+    if (jornada != null) {
+      return this._gfs.decimalRound(this.participant.getSerieTLL(jornada).percentatge) + '%';
     }
-    let tirats: number = this.participant.getTirsLliuresTirats(index);
+    let tirats: number = this.participant.getTirsLliuresTirats(jornada);
     if (tirats > 0) {
-      let value: number = this.participant.getTirsLliuresAnotats(index) / tirats * 100;
+      let value: number = this.participant.getTirsLliuresAnotats(jornada) / tirats * 100;
       return this._gfs.decimalRound(value) + '%';
     }
     return null;
@@ -79,7 +79,9 @@ export class ParticipantProfileComponent implements OnInit {
     let jornada: number = 1;
     while (jornada <= this.participant.seriesTLL.length) {
       dataFreeThrowsChart['labels'].push("J" + jornada);
-      freeThrowsMade.push(this.participant.seriesTLL[jornada - 1].anotats);
+      if (this.participant.seriesTLL[jornada - 1]) {
+        freeThrowsMade.push(this.participant.seriesTLL[jornada - 1].anotats);
+      }
       ++jornada;
     }
     dataFreeThrowsChart['series'].push(freeThrowsMade);
