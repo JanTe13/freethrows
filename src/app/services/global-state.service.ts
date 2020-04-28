@@ -7,6 +7,7 @@ export class GlobalStateService {
 
   private _jornades: any[] = [];
   private _tirsLliures: number;
+  private _rebotejadors: number;
 
   constructor() { }
 
@@ -27,5 +28,13 @@ export class GlobalStateService {
 
   set tirsLliures (value: number) {
     this._tirsLliures = value;
+  }
+
+  get rebotejadors(): number {
+    return this._rebotejadors;
+  }
+
+  set rebotejadors(value: number) {
+    this._rebotejadors = value;
   }
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalFunctionsService } from 'app/services/global-functions.service';
 import { GlobalStateService } from 'app/services/global-state.service';
 import * as Chartist from 'chartist';
+import { ShotStatus } from 'app/models/Serie';
 
 @Component({
   selector: 'app-participant-profile',
@@ -55,13 +56,12 @@ export class ParticipantProfileComponent implements OnInit {
   }
 
   getSequenciaPercentages(): number[] {
-    let percentages: number[] = [];
+    let percentages: number[] = Array(this._gss.tirsLliures).fill(0);
     for (let serie of this.participant.seriesTLL) {
-      let lliures = this._gss.tirsLliures - 1;
-      while(lliures >= 0) {
-        if (percentages[lliures] != null) percentages[lliures] += serie.getTir(lliures);
-        else percentages[lliures] = serie.getTir(lliures);
-        --lliures;
+      let tir = this._gss.tirsLliures - 1;
+      while(tir >= 0) {
+        percentages[tir] += serie.sequencia[tir] === ShotStatus.Made ? 1 : 0;
+        --tir;
       }
     }
     for (let i in percentages) {

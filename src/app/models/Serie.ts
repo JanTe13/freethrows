@@ -1,14 +1,17 @@
+export enum ShotStatus {
+    Missed,
+    Neutral,
+    Made
+}
+
 export class Serie {
 
     private _codi: string;
     private _codiParticipant: string;
-    private _sequencia: string;
+    private _sequencia: any;
     private _jornada: number;
-    private _anotats: number;
-    private _tirats: number;
-    private _percentatge: number;
 
-    constructor(codi?: string, codiParticipant?: string, sequencia?: string, jornada?: number) {
+    constructor(codi?: string, codiParticipant?: string, sequencia: ShotStatus[] = [], jornada?: number) {
         this.codi = codi;
         this.codiParticipant = codiParticipant;
         this.sequencia = sequencia;
@@ -31,15 +34,12 @@ export class Serie {
         this._codiParticipant = value;
     }
 
-    get sequencia(): string {
+    get sequencia(): any {
         return this._sequencia;
     }
 
-    set sequencia(value: string) {
+    set sequencia(value: any) {
         this._sequencia = value;
-        this._tirats = value.length;
-        this._anotats = value.split('1').length - 1;
-        this._percentatge = this.anotats / this.tirats * 100;
     }
 
     get jornada(): number {
@@ -51,19 +51,23 @@ export class Serie {
     }
 
     get tirats(): number {
-        return this._tirats;
+        return this.sequencia.length;
     }
 
     get anotats(): number {
-        return this._anotats;
+        let anotats: number = 0;
+        this.sequencia.forEach(tir => {
+            if (tir === ShotStatus.Made) anotats ++;
+        });
+        return anotats;
     }
 
     get percentatge(): number {
-        return this._percentatge;
+        return (this.anotats / this.tirats) * 100;
     }
 
-    public getTir(index: number): number {
-        return parseInt(this.sequencia.split('')[index]);
+    public addTir(index: number, resultat: ShotStatus) {
+        this.sequencia.splice(index, 1, resultat);
     }
 
 }

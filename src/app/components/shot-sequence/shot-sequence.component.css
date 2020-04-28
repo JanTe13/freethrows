@@ -4,6 +4,10 @@ i.shot {
     cursor: default;
 }
 
+i.shot.neutral {
+    color: gray;
+}
+
 i.shot.missed {
     color: red;
 }
@@ -18,4 +22,38 @@ i.shot.regular {
 
 i.shot.good {
     color: #ffe100;
+}
+
+/* SWITCH */
+.switch-box {
+    width: 75px;
+    height: 25px;
+    background-color: #26c6da40;
+    border-radius: 20px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.switch-ball {
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.switch-ball#missed.active {
+    background-color: red;
+}
+
+.switch-ball#neutral.active {
+    background-color: #26c6da;
+}
+
+.switch-ball#made.active {
+    background-color: #17ca17;
+}
+
+h5.tir {
+    display: inline-block;
+    vertical-align: middle;
 }

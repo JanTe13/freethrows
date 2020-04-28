@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ShotStatus } from 'app/models/Serie';
 
 @Component({
   selector: 'app-shot-sequence',
@@ -7,23 +8,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ShotSequenceComponent implements OnInit {
 
-  public shots: number[];
-  @Input() set shotSequence(value: string) {
-    this.shots = value ? this.convertToArray(value): [];
-  };
+  @Input() shotSequence: ShotStatus[];
   @Input() shotsPercentage: number[] = [];
+  @Input() edition: boolean = false;
 
-  constructor() { }
+  public shotSt: any = ShotStatus;
+
+  constructor() {}
 
   ngOnInit(): void {
   }
 
-  private convertToArray(sequence: string): number[] {
-    let res: number[] = [];
-    for (let shot of sequence) {
-      res.push(parseInt(shot));
-    }
-    return res;
+  setActive(index: number, value: ShotStatus) {
+    this.shotSequence[index] = value;
+    
+  }
+
+  isActive(index: number, value: ShotStatus) {
+    return this.shotSequence[index] === value;
   }
 
 }

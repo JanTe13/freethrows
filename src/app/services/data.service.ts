@@ -66,7 +66,7 @@ export class DataService {
           res.forEach(ll => {
             let index = participants.findIndex(p => p.codi === ll.codiParticipant);
             if (index >= 0) {
-              participants[index].addSequenciaTirsLliures(ll);
+              participants[index].addSerieTirsLliures(ll);
             }
           });
           observer.next(participants);
@@ -81,7 +81,7 @@ export class DataService {
         let participant: Participant = res;
         // Càrrega de tirs lliures
         this.getFreeThrows(participant.codi).subscribe(res => {
-          res.forEach(ll => participant.addSequenciaTirsLliures(ll));
+          res.forEach(ll => participant.addSerieTirsLliures(ll));
           observer.next(participant);
         })
       });

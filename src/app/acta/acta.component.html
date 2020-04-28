@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Acta -->
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="card">
                     <div class="card-header card-header-info">
                         <h4 class="card-title">Acta</h4>
@@ -13,7 +13,12 @@
                                 <div class="card-header">
                                     <h6 class="card-title">Rebotejadors</h6>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" style="padding-top: 0;">
+                                    <table>
+                                        <tr *ngFor="let rebotejador of rebotejadors?.reverse()">
+                                            <td><h5><strong>{{rebotejador.nom}}</strong></h5></td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -22,13 +27,12 @@
                                 <div class="card-header">
                                     <h6 class="card-title" style="display: inline;">Tirador</h6>
                                     <h5 class="card-title" style="display: inline;">
-                                        <strong style="margin-left: 15px;">{{ participants[indexTirador]?.nom }}</strong>
+                                        <strong style="margin-left: 15px;">{{ participant?.nom }}</strong>
                                     </h5>
                                 </div>
                                 <div class="card-body">
-                                    <form>
-                                        <button mat-raised-button type="submit" class="btn btn-info pull-right">Següent</button>
-                                    </form>
+                                    <app-shot-sequence [edition]="true" [shotSequence]="participant?.seriesTLL[jornada - 1].sequencia"></app-shot-sequence>
+                                    <button mat-raised-button class="btn btn-info pull-right" style="margin-top: 30px;" (click)="nextTirador()">Següent</button>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +43,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Estadístiques <strong style="margin-left: 15px;">{{ participants[indexTirador]?.nom }}</strong></h4>
+                        <h4 class="card-title">Estadístiques <strong style="margin-left: 15px;">{{ participant?.nom }}</strong></h4>
                     </div>
                     <div class="card-body">
                         
@@ -47,15 +51,15 @@
                 </div>
             </div>
             <!-- Pendents -->
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-header card-header-info">
                         <h4 class="card-title">Pendents</h4>
                     </div>
                     <div class="card-body">
                         <table>
-                            <tr *ngFor="let participant of pendents">
-                                <td>{{participant.nom}}</td>
+                            <tr *ngFor="let p of pendents">
+                                <td>{{p.nom}}</td>
                             </tr>
                         </table>
                     </div>

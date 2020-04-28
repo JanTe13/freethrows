@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Participant } from 'app/models/participant';
-import { Serie } from 'app/models/Serie';
+import { Serie, ShotStatus } from 'app/models/Serie';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +21,25 @@ export class ModelConversorService {
 
   public jsonToFreeThrow(value: any): Serie {
     let tir = value.payload.toJSON();
+    let sequencia: ShotStatus[] = [];
+    for (let i in tir['sequencia']) {
+      let status: ShotStatus;
+      switch(tir['sequencia'][i]) {
+        case 0:
+          status = ShotStatus.Missed;
+          break;
+        case 2:
+          status = ShotStatus.Made;
+          break;
+        default:
+          status = ShotStatus.Neutral;
+      }
+      sequencia.push(status);
+    };
     return new Serie(
       value['key'],
       tir['codi_participant'],
-      tir['sequencia'],
+      sequencia,
       tir['jornada']
     );
   }

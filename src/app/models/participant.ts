@@ -80,7 +80,7 @@ export class Participant {
         return total;
     }
 
-    addSequenciaTirsLliures(serie: Serie): void {
+    addSerieTirsLliures(serie: Serie): void {
         this.seriesTLL[serie.jornada - 1] = serie;
     }
 

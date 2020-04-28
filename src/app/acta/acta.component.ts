@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Participant } from 'app/models/participant';
 import { DataService } from 'app/services/data.service';
+import { GlobalStateService } from 'app/services/global-state.service';
+import { GlobalFunctionsService } from 'app/services/global-functions.service';
+import { Serie, ShotStatus } from 'app/models/Serie';
 
 @Component({
   selector: 'app-acta',
@@ -10,22 +13,54 @@ import { DataService } from 'app/services/data.service';
 export class ActaComponent implements OnInit {
 
   public participants: Participant[] = [];
-  public rebotejadors: Participant[] = [];
   public pendents: Participant[] = [];
-  public indexTirador: number = 0;
+  public participant: Participant;
+  public rebotejadors: Participant[];
+  public jornada: number = 3;
 
-  constructor(private _ds: DataService) {
+  public globalSt: GlobalStateService;
+
+  constructor(private _ds: DataService, private _gss: GlobalStateService) {
     this._ds.getAllParticipants().subscribe(res => {
-      res.forEach(participant => this.participants.push(participant));
-      res.splice(this.indexTirador, 1);
-      this.pendents = res;
+      res.forEach(p => {
+        this.participants.push(p);
+        this.pendents.push(p);
+      });
+      this.nextTirador();
     });
+
+    this.globalSt = this._gss;
   }
 
   ngOnInit(): void {
   }
 
-  // getRebotejadors(): Participant[] {
-  //   if (this.)
-  // }
+  refreshRebotejadors(index: number = 0, lap: boolean = false): void {
+    if (this.rebotejadors.length < this._gss.rebotejadors) {
+      if (index < this.pendents.length) {
+        this.rebotejadors.push(this.pendents[index]);
+        this.refreshRebotejadors(index + 1);
+      }
+      else {
+        if (!lap) index = 0;
+        this.rebotejadors.push(this.participants[index]);
+        this.refreshRebotejadors(index + 1, true);
+      }
+    }
+  }
+
+  nextTirador(): void {
+    this.participant = this.pendents[0];
+    this.pendents.splice(0, 1);
+    this.rebotejadors = [];
+    this.refreshRebotejadors();
+    this.participant.addSerieTirsLliures(
+      new Serie(
+        this.participant.codi + "_" + this.jornada, 
+        this.participant.codi,
+        Array(this._gss.tirsLliures).fill(ShotStatus.Neutral),
+        this.jornada
+      )
+    );
+  }
 }
