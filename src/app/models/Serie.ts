@@ -70,4 +70,11 @@ export class Serie {
         this.sequencia.splice(index, 1, resultat);
     }
 
+    public clone() {
+        let serie = new Serie(this.codi, this.codiParticipant, [], this.jornada);
+        this.sequencia.forEach((t, i) => serie.addTir(i, t));
+
+        return serie;
+    }
+
 }

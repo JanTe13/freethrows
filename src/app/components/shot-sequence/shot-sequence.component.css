@@ -5,7 +5,7 @@ i.shot {
 }
 
 i.shot.neutral {
-    color: gray;
+    color: #c3c3c3;
 }
 
 i.shot.missed {
@@ -32,6 +32,14 @@ i.shot.good {
     border-radius: 20px;
     display: inline-block;
     margin-left: 10px;
+}
+
+.switch-box.missed {
+    background-color: #da472640;
+}
+
+.switch-box.made {
+    background-color: #26da4440;
 }
 
 .switch-ball {

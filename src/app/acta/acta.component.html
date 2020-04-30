@@ -30,9 +30,18 @@
                                         <strong style="margin-left: 15px;">{{ participant?.nom }}</strong>
                                     </h5>
                                 </div>
-                                <div class="card-body">
-                                    <app-shot-sequence [edition]="true" [shotSequence]="participant?.getSerieTLL(jornada).sequencia"></app-shot-sequence>
-                                    <button mat-raised-button class="btn btn-info pull-right" style="margin-top: 30px;" (click)="next()">Següent</button>
+                                <div class="card-body" style="padding-top: 0">
+                                    <h6 class="card-title" style="display: inline;">Jornada</h6>
+                                    <mat-select class="select" [ngModel]="jornada" (selectionChange)="setJornada($event.value)">
+                                        <mat-option *ngFor="let date of globalSt.jornades; let i = index" [value]="i + 1">
+                                          {{i + 1}} ({{date}})
+                                        </mat-option>
+                                      </mat-select>
+                                    <app-shot-sequence [edition]="true" [shotSequence]="serie?.sequencia"></app-shot-sequence>
+                                    <button mat-raised-button class="btn btn-info pull-right" style="margin-top: 30px;" 
+                                        (click)="next(isLastTirador())" 
+                                        [ngClass]="{'btn-success': isLastTirador()}">Següent
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -57,11 +66,16 @@
                         <h4 class="card-title">Pendents</h4>
                     </div>
                     <div class="card-body">
-                        <table>
-                            <tr *ngFor="let p of pendents">
-                                <td>{{p.nom}}</td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-2"><strong>J</strong></div>
+                            <div class="col-md-2"><strong>T</strong></div>
+                        </div>
+                        <div class="row llista" *ngFor="let p of participants" (click)="setTirador(p)" [ngClass]="{'tirador': isCurrentTirador(p)}">
+                            <div class="col-md-8">{{p.nom}}</div>
+                            <div class="col-md-2">{{ hasSerieTirada(p) ? p.getSerieTLL(jornada).anotats : '-' }}</div>
+                            <div class="col-md-2">{{ p.getTirsLliuresAnotats() }}</div>
+                        </div>
                     </div>
                 </div>
             </div>

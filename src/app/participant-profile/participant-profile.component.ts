@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Participant } from 'app/models/participant';
 import { DataService } from 'app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalFunctionsService } from 'app/services/global-functions.service';
 import { GlobalStateService } from 'app/services/global-state.service';
 import * as Chartist from 'chartist';
-import { ShotStatus } from 'app/models/Serie';
+import { ShotStatus, Serie } from 'app/models/Serie';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-participant-profile',
   templateUrl: './participant-profile.component.html',
   styleUrls: ['./participant-profile.component.css']
 })
-export class ParticipantProfileComponent implements OnInit {
+export class ParticipantProfileComponent implements OnInit, OnDestroy {
 
   public codi_participant: string;
   public participant: Participant;
+
+  private _subscription: Subscription;
   
   constructor(private _ds: DataService, 
     private route: ActivatedRoute, 
@@ -25,7 +28,7 @@ export class ParticipantProfileComponent implements OnInit {
     ) {
     this.route.paramMap.subscribe(params => {
       this.codi_participant = params.get("codi");
-      this._ds.getParticipantByCodeWithFreeThrows(this.codi_participant).subscribe(res => {
+      this._subscription = this._ds.getParticipantByCodeWithFreeThrows(this.codi_participant).subscribe(res => {
         this.participant = res;
         this.generateCharts();
       });
@@ -33,6 +36,10 @@ export class ParticipantProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
   }
 
   goToList() {
@@ -77,11 +84,10 @@ export class ParticipantProfileComponent implements OnInit {
     };
     let freeThrowsMade: number[] = [];
     let jornada: number = 1;
-    while (jornada <= this.participant.seriesTLL.length) {
+    while (jornada <= this._gss.jornades.length) {
       dataFreeThrowsChart['labels'].push("J" + jornada);
-      if (this.participant.seriesTLL[jornada - 1]) {
-        freeThrowsMade.push(this.participant.seriesTLL[jornada - 1].anotats);
-      }
+      let serie: Serie = this.participant.getSerieTLL(jornada);
+      freeThrowsMade.push(serie ? serie.anotats : 0);
       ++jornada;
     }
     dataFreeThrowsChart['series'].push(freeThrowsMade);

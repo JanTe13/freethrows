@@ -1,0 +1,15 @@
+mat-select.select {
+    width: 50%;
+    border-bottom: 1px solid #26c6da;
+    margin-bottom: 40px;
+    margin-left: 10px;
+}
+
+.tirador {
+    background-color: #26c6da40;
+}
+
+.llista {
+    cursor: pointer;
+    border-radius: 3px;
+}

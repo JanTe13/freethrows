@@ -14,7 +14,7 @@
 <div *ngIf="edition" class="row">
     <div *ngFor="let shot of shotSequence; let indx = index" class="col-lg-4" style="width: 50%">
         <h5 class="tir">{{ indx + 1 }}</h5>
-        <div class="switch-box">
+        <div class="switch-box" [ngClass]="{'missed': isActive(indx, shotSt.Missed), 'made': isActive(indx, shotSt.Made)}">
             <div id="missed" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Missed)}" (click)="setActive(indx, shotSt.Missed)"></div>
             <div id="neutral" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Neutral)}" (click)="setActive(indx, shotSt.Neutral)"></div>
             <div id="made" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Made)}" (click)="setActive(indx, shotSt.Made)"></div>

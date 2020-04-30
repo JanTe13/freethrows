@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from 'app/services/data.service';
 import { Participant } from 'app/models/participant';
 import { GlobalStateService } from 'app/services/global-state.service';
 import { GlobalFunctionsService } from 'app/services/global-functions.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-llistat',
   templateUrl: './llistat.component.html',
   styleUrls: ['./llistat.component.css']
 })
-export class LlistatComponent implements OnInit {
+export class LlistatComponent implements OnInit, OnDestroy {
   public participants: Participant[] = [];
   public jornades: any[];
 
   // Ordenació
   private _currentSortField: string;
   private _currentSortType: boolean;
+
+  private _subscription: Subscription;
 
   constructor(private _ds: DataService, 
     private _gss: GlobalStateService, 
@@ -26,6 +29,10 @@ export class LlistatComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
 
   showFormatedFreeThrows(participant: Participant, jornada: number): string {
@@ -50,7 +57,7 @@ export class LlistatComponent implements OnInit {
 
   private loadGeneralListData() {
     // Càrrega de participants
-    this._ds.getAllParticipantsWithFreeThrows().subscribe(res => this.participants = res);
+    this._subscription = this._ds.getAllParticipantsWithFreeThrows().subscribe(res => this.participants = res);
     
     // Càrrega de jornades
     this.jornades = this._gss.jornades;

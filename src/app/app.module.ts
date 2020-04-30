@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DecimalPipe } from '@angular/common';
 import { ActaComponent } from './acta/acta.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { ActaComponent } from './acta/acta.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     HttpModule,
     ComponentsModule,
     RouterModule,
