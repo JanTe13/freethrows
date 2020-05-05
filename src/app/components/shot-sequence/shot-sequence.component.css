@@ -16,14 +16,6 @@ i.shot.made {
     color: #17ca17;
 }
 
-i.shot.regular {
-    color: orange;
-}
-
-i.shot.good {
-    color: #ffe100;
-}
-
 /* SWITCH */
 .switch-box {
     width: 75px;
@@ -72,7 +64,7 @@ i.shot.good {
     background-color: #17ca17;
 }
 
-h5.tir {
+/* h5.tir {
     display: inline-block;
     vertical-align: middle;
-}
+} */

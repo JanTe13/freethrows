@@ -1,6 +1,7 @@
 .circle-chart-box {
     margin-bottom: 15px; 
     text-align: -webkit-center;
+    padding: 0;
 }
 
 .circle-chart {
@@ -41,4 +42,14 @@
 
 .good {
     background-color: #ffe100;
+}
+
+h4 {
+    text-align: center; 
+    font-weight: 500;
+}
+
+.card-body {
+    padding-top: 0; 
+    padding-bottom: 0
 }
