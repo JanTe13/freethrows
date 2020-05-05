@@ -38,9 +38,11 @@
                                         </mat-option>
                                       </mat-select>
                                     <app-shot-sequence [edition]="true" [shotSequence]="serie?.sequencia"></app-shot-sequence>
+                                    <button mat-raised-button class="btn btn-white pull-left"style="margin-top: 30px;" 
+                                        (click)="previous()" [disabled]="isFirstTirador()">Anterior
+                                    </button>
                                     <button mat-raised-button class="btn btn-info pull-right" style="margin-top: 30px;" 
-                                        (click)="next(isLastTirador())" 
-                                        [ngClass]="{'btn-success': isLastTirador()}">Següent
+                                        (click)="next()" [ngClass]="{'btn-success': isLastTirador()}">Següent
                                     </button>
                                 </div>
                             </div>

@@ -6,14 +6,13 @@
 </div>
 
 <div *ngIf="edition" class="row">
-    <div *ngFor="let shot of shotSequence; let indx = index" class="col-lg-4" style="width: 30%">
-        <!-- <h5 class="tir">{{ indx + 1 }}</h5> -->
+    <div *ngFor="let shot of shotSequence; let indx = index" class="col-lg-4" style="width: 30%; text-align: center;">
         <div class="switch-box" [ngClass]="{'missed': isActive(indx, shotSt.Missed), 'made': isActive(indx, shotSt.Made)}">
             <div id="missed" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Missed)}" (click)="setActive(indx, shotSt.Missed)">
                 <span *ngIf="!isActive(indx, shotSt.Missed)">-</span>
             </div>
             <div id="neutral" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Neutral)}" (click)="setActive(indx, shotSt.Neutral)">
-                <span>{{indx + 1}}</span>
+                <span class="gray" [ngClass]="{'azure': isActive(indx, shotSt.Neutral)}">{{indx + 1}}</span>
             </div>
             <div id="made" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Made)}" (click)="setActive(indx, shotSt.Made)">
                 <span *ngIf="!isActive(indx, shotSt.Made)">+</span>

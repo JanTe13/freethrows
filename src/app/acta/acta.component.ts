@@ -4,6 +4,8 @@ import { DataService } from 'app/services/data.service';
 import { GlobalStateService } from 'app/services/global-state.service';
 import { take } from 'rxjs/operators';
 import { Serie, ShotStatus } from 'app/models/Serie';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'app/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-acta',
@@ -21,7 +23,7 @@ export class ActaComponent implements OnInit {
 
   private _jornada: number = 1;
 
-  constructor(private _ds: DataService, private _gss: GlobalStateService) {
+  constructor(private _ds: DataService, private _gss: GlobalStateService, public dialog: MatDialog) {
     this.loadParticipants();
     this.globalSt = this._gss;
   }
@@ -48,14 +50,18 @@ export class ActaComponent implements OnInit {
     return this.getRebotejadors(rebotejadors, index + 1);
   }
 
-  next(nextJornada: boolean = false): void {
-    this._ds.saveSerie(this.serie);
-    this.participant.addSerieTirsLliures(this.serie);
-    if (!nextJornada) {
-      this.indexTirador ++;
-      this.setTirador(this.participants[this.indexTirador]);
+  next(): void {
+    if (this.serie.sequencia.find(tir => tir == ShotStatus.Neutral) != null) {
+      this.openDialog();
     }
-    else this.setJornada(this.jornada === this._gss.jornades.length ? 0 : this.jornada + 1);
+    else {
+      this.saveSerie();
+    }
+  }
+
+  previous(): void {
+    this.indexTirador --;
+    this.setTirador(this.participants[this.indexTirador]);
   }
 
   isCurrentTirador(participant: Participant): boolean {
@@ -70,6 +76,10 @@ export class ActaComponent implements OnInit {
     return this.indexTirador === this.participants.length - 1;
   }
 
+  isFirstTirador(): boolean {
+    return this.indexTirador === 0;
+  }
+
   setTirador(participant: Participant): void {
     this.indexTirador = this.participants.findIndex(p => p.codi === participant.codi);
     this.participant = participant;
@@ -79,6 +89,32 @@ export class ActaComponent implements OnInit {
 
   showStats(): boolean {
     return !this.participant || this.participant.seriesTLL == null || this.participant.seriesTLL.length > 0;
+  }
+
+  private openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {
+        title: "Sèrie incompleta",
+        text: "Hi ha tirs de la sèrie sense marcar.",
+        secText: "Vols continuar i guardar la sèrie incompleta?"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(confirm => {
+      console.log('The dialog was closed');
+      if (confirm) this.saveSerie();
+    });
+  }
+
+  private saveSerie(): void {
+    this._ds.saveSerie(this.serie);
+    this.participant.addSerieTirsLliures(this.serie);
+    if (!this.isLastTirador()) {
+      this.indexTirador ++;
+      this.setTirador(this.participants[this.indexTirador]);
+    }
+    else this.setJornada(this.jornada === this._gss.jornades.length ? 1 : this.jornada + 1);
   }
 
   private loadDataTirador():void {

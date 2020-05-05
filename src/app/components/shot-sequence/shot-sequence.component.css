@@ -64,7 +64,10 @@ i.shot.made {
     background-color: #17ca17;
 }
 
-/* h5.tir {
-    display: inline-block;
-    vertical-align: middle;
-} */
+span.azure {
+    color: azure !important;
+}
+
+span.gray {
+    color: #777777;
+}

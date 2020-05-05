@@ -23,6 +23,7 @@ import { ActaComponent } from './acta/acta.component';
 import { MatSelectModule } from '@angular/material/select';
 import { SeriesChartComponent } from './charts/series-chart/series-chart.component';
 import { ShotChartComponent } from './charts/shot-chart/shot-chart.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { ShotChartComponent } from './charts/shot-chart/shot-chart.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
     HttpModule,
     ComponentsModule,
     RouterModule,
