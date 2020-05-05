@@ -31,7 +31,6 @@ i.shot.good {
     background-color: #26c6da40;
     border-radius: 20px;
     display: inline-block;
-    margin-left: 10px;
 }
 
 .switch-box.missed {
@@ -46,7 +45,19 @@ i.shot.good {
     width: 25px;
     height: 25px;
     border-radius: 20px;
-    display: inline-block;
+    display: table-cell;
+    text-align: center;
+    cursor: pointer;
+}
+
+.switch-ball#missed {
+    color: red;
+    font-weight: bold;
+}
+
+.switch-ball#made {
+    color: #279a27;
+    font-weight: 400;
 }
 
 .switch-ball#missed.active {

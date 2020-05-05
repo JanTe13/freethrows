@@ -57,21 +57,21 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="row">
+                        <div class="row" *ngIf="showStats()">
                             <div class="col-md-6">
-                                <table class="table" style="border-bottom: 1px solid gold">
+                                <table class="table" style="border-bottom: 1px solid #f0e9d0">
                                     <thead class=" text-info">
                                         <th></th>
-                                        <th>
+                                        <th class="center-col">
                                             <span>Tirs</span>
                                         </th>
-                                        <th>
+                                        <th class="center-col">
                                             <span>%</span>
                                         </th>
-                                        <th>
+                                        <th class="center-col">
                                             <span>Seqüència</span>
                                         </th>
-                                        <th>
+                                        <th class="center-col">
                                             <span>Total</span>
                                         </th>
                                     </thead>
@@ -80,37 +80,33 @@
                                             <td>
                                                 <strong>J{{tirs.jornada}}</strong>
                                             </td>
-                                            <td>
+                                            <td class="center-col">
                                                 {{ getFormatedTirs(tirs.jornada) }}
                                             </td>
-                                            <td>
+                                            <td class="center-col">
                                                 {{ getPercentage(tirs.jornada) }}
                                             </td>
-                                            <td>
+                                            <td class="center-col">
                                                 <app-shot-sequence
                                                     [shotSequence]="participant.getSequenciaTirsLliures(tirs.jornada)"
                                                 ></app-shot-sequence>
                                             </td>
-                                            <td class="text-info">
+                                            <td class="text-info center-col">
                                                 {{ participant.getTirsLliuresAnotats(tirs.jornada) }}
                                             </td>
                                         </tr>
-                                        <tr *ngIf="participant?.seriesTLL.length > 0">
+                                        <tr *ngIf="participant?.seriesTLL.length > 0" style="background-color: #ffd7002b;">
                                             <td>
                                                 <strong>Total</strong>
                                             </td>
-                                            <td>
+                                            <td class="center-col">
                                                 {{ getFormatedTirs() }}
                                             </td>
-                                            <td>
+                                            <td class="center-col">
                                                 {{ getPercentage() }}
                                             </td>
-                                            <td>
-                                                <app-shot-sequence
-                                                    [shotsPercentage]="getSequenciaPercentages()"
-                                                ></app-shot-sequence>
-                                            </td>
-                                            <td class="text-info">
+                                            <td></td>
+                                            <td class="text-info center-col">
                                                 {{ participant?.getTirsLliuresAnotats() }}
                                             </td>
                                         </tr>
@@ -118,12 +114,12 @@
                                 </table>
                             </div>
                             <div class="col-md-6">
-                                <div class="card card-plain card-chart">
-                                    <div class="card-header card-header-info">
-                                        <div class="ct-chart" id="freeThrowsChart"></div>
-                                    </div>
-                                </div>
+                                <app-shot-chart [series]="participant?.seriesTLL" [bigChart]="true"></app-shot-chart>
+                                <app-series-chart [participant]="participant"></app-series-chart>
                             </div>
+                        </div>
+                        <div *ngIf="participant && participant.seriesTLL.length == 0">
+                            <span>Aquest participant no ha participat a cap jornada</span>
                         </div>
                     </div>
                 </div>

@@ -77,6 +77,10 @@ export class ActaComponent implements OnInit {
     this.rebotejadors = this.getRebotejadors();
   }
 
+  showStats(): boolean {
+    return !this.participant || this.participant.seriesTLL == null || this.participant.seriesTLL.length > 0;
+  }
+
   private loadDataTirador():void {
     if (this.participant.getSerieTLL(this.jornada) == null) {
       this.serie = new Serie(

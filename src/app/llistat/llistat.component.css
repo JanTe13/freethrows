@@ -9,3 +9,11 @@ tr.participant-row {
 tr.participant-row:hover {
     background-color: azure;
 }
+
+td.center-col {
+    text-align: center;
+}
+
+th.center-col {
+    text-align: end;
+}

@@ -1,0 +1,44 @@
+.circle-chart-box {
+    margin-bottom: 15px; 
+    text-align: -webkit-center;
+}
+
+.circle-chart {
+    border: 1px solid #80808094;
+    border-radius: 100px;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.big-circle-chart {
+    width: 130px;
+    height: 130px;
+}
+
+.stats-perc {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.col-33 {
+    width: 33%;
+}
+
+.missed {
+    background-color: #ff0000d1;
+}
+
+.made {
+    background-color: #17ca17;
+}
+
+.regular {
+    background-color: orange;
+}
+
+.good {
+    background-color: #ffe100;
+}

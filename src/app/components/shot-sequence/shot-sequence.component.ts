@@ -9,8 +9,9 @@ import { ShotStatus } from 'app/models/Serie';
 export class ShotSequenceComponent implements OnInit {
 
   @Input() shotSequence: ShotStatus[];
-  @Input() shotsPercentage: number[] = [];
   @Input() edition: boolean = false;
+  @Input() percentages: boolean = false;
+
 
   public shotSt: any = ShotStatus;
 
@@ -27,5 +28,4 @@ export class ShotSequenceComponent implements OnInit {
   isActive(index: number, value: ShotStatus) {
     return this.shotSequence[index] === value;
   }
-
 }

@@ -55,7 +55,13 @@
                         <h4 class="card-title">Estadístiques <strong style="margin-left: 15px;">{{ participant?.nom }}</strong></h4>
                     </div>
                     <div class="card-body">
-                        
+                        <div *ngIf="showStats()">
+                            <app-shot-chart [series]="participant?.seriesTLL"></app-shot-chart>
+                            <app-series-chart [participant]="participant"></app-series-chart>
+                        </div>
+                        <div *ngIf="participant && participant.seriesTLL.length == 0">
+                            <span>Aquest participant no ha participat a cap jornada</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,18 +69,26 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Pendents</h4>
+                        <h4 class="card-title">Participants</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8"></div>
-                            <div class="col-md-2"><strong>J</strong></div>
-                            <div class="col-md-2"><strong>T</strong></div>
+                            <div class="col-md-6 col-50"></div>
+                            <div class="col-md-3 col-25">
+                                <span class="pull-right"><strong>J{{jornada}}</strong></span>
+                            </div>
+                            <div class="col-md-3 col-25">
+                                <span class="pull-right"><strong>T</strong></span>
+                            </div>
                         </div>
                         <div class="row llista" *ngFor="let p of participants" (click)="setTirador(p)" [ngClass]="{'tirador': isCurrentTirador(p)}">
-                            <div class="col-md-8">{{p.nom}}</div>
-                            <div class="col-md-2">{{ hasSerieTirada(p) ? p.getSerieTLL(jornada).anotats : '-' }}</div>
-                            <div class="col-md-2">{{ p.getTirsLliuresAnotats() }}</div>
+                            <div class="col-md-6 col-50 text-cut" style="padding-right: 0">{{p.nom}}</div>
+                            <div class="col-md-3 col-25">
+                                <span class="pull-right">{{ hasSerieTirada(p) ? p.getSerieTLL(jornada).anotats : '-' }}</span>
+                            </div>
+                            <div class="col-md-3 col-25">
+                                <span class="pull-right">{{ p.getTirsLliuresAnotats() }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

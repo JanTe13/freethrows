@@ -3,21 +3,21 @@
         <i class="material-icons shot neutral" 
         [ngClass]="{'missed': shot == shotSt.Missed, 'made': shot === shotSt.Made}">fiber_manual_record</i>
     </span>
-    
-    <span *ngFor="let shot of shotsPercentage">
-        <i class="material-icons shot missed" 
-            [ngClass]="{'made': (shot >= 75 && shot <= 100), 
-            'good': (shot < 75 && shot >= 50), 'regular': (shot < 50 && shot >= 25)}" [title]="shot + '%'">fiber_manual_record</i>
-    </span>
 </div>
 
 <div *ngIf="edition" class="row">
-    <div *ngFor="let shot of shotSequence; let indx = index" class="col-lg-4" style="width: 50%">
-        <h5 class="tir">{{ indx + 1 }}</h5>
+    <div *ngFor="let shot of shotSequence; let indx = index" class="col-lg-4" style="width: 30%">
+        <!-- <h5 class="tir">{{ indx + 1 }}</h5> -->
         <div class="switch-box" [ngClass]="{'missed': isActive(indx, shotSt.Missed), 'made': isActive(indx, shotSt.Made)}">
-            <div id="missed" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Missed)}" (click)="setActive(indx, shotSt.Missed)"></div>
-            <div id="neutral" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Neutral)}" (click)="setActive(indx, shotSt.Neutral)"></div>
-            <div id="made" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Made)}" (click)="setActive(indx, shotSt.Made)"></div>
+            <div id="missed" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Missed)}" (click)="setActive(indx, shotSt.Missed)">
+                <span *ngIf="!isActive(indx, shotSt.Missed)">-</span>
+            </div>
+            <div id="neutral" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Neutral)}" (click)="setActive(indx, shotSt.Neutral)">
+                <span>{{indx + 1}}</span>
+            </div>
+            <div id="made" class="switch-ball" [ngClass]="{'active': isActive(indx, shotSt.Made)}" (click)="setActive(indx, shotSt.Made)">
+                <span *ngIf="!isActive(indx, shotSt.Made)">+</span>
+            </div>
         </div>
     </div>
 </div>

@@ -13,3 +13,17 @@ mat-select.select {
     cursor: pointer;
     border-radius: 3px;
 }
+
+.text-cut {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.col-50 {
+    width: 50%;
+}
+
+.col-25 {
+    width: 25%
+}

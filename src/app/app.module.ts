@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { DecimalPipe } from '@angular/common';
 import { ActaComponent } from './acta/acta.component';
 import { MatSelectModule } from '@angular/material/select';
+import { SeriesChartComponent } from './charts/series-chart/series-chart.component';
+import { ShotChartComponent } from './charts/shot-chart/shot-chart.component';
 
 @NgModule({
   imports: [
@@ -42,7 +44,9 @@ import { MatSelectModule } from '@angular/material/select';
     AdminLayoutComponent,
     ParticipantProfileComponent,
     LlistatComponent,
-    ActaComponent
+    ActaComponent,
+    SeriesChartComponent,
+    ShotChartComponent
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent]

@@ -17,3 +17,7 @@ i.back {
     z-index: 1030;
     position: relative;
 }
+
+.center-col {
+    text-align: center;
+}

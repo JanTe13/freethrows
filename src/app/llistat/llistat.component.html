@@ -18,19 +18,19 @@
                                         <span (click)="sortList('nom')" class="sort-field">Nom</span>
                                         <app-sort-arrows [isDesc]="getCurrentSortType('nom')"></app-sort-arrows>
                                     </th>
-                                    <th>
+                                    <th class="center-col">
                                         <span (click)="sortList('sexe')" class="sort-field">Sexe</span>
                                         <app-sort-arrows [isDesc]="getCurrentSortType('sexe')"></app-sort-arrows>
                                     </th>
-                                    <th>
+                                    <th class="center-col">
                                         <span (click)="sortList('curs')" class="sort-field">Curs</span>
                                         <app-sort-arrows [isDesc]="getCurrentSortType('curs')"></app-sort-arrows>
                                     </th>
-                                    <th *ngFor="let jornada of jornades; let i = index">
+                                    <th *ngFor="let jornada of jornades; let i = index" class="center-col">
                                         <span (click)="sortList('getSequenciaTirsLliures', {index: i}, 'index')" class="sort-field">J{{i + 1}}</span>
                                         <app-sort-arrows [isDesc]="getCurrentSortType(i)"></app-sort-arrows>
                                     </th>
-                                    <th>
+                                    <th class="center-col">
                                         <span (click)="sortList('totalTirsLliures')" class="sort-field">Total</span>
                                         <app-sort-arrows [isDesc]="getCurrentSortType('totalTirsLliures')"></app-sort-arrows>
                                     </th>
@@ -43,16 +43,16 @@
                                         <td>
                                             {{participant.nom}}
                                         </td>
-                                        <td>
+                                        <td class="center-col">
                                             {{participant.sexe}}
                                         </td>
-                                        <td>
+                                        <td class="center-col">
                                             {{participant.curs}}
                                         </td>
-                                        <td *ngFor="let jornada of jornades; let i = index">
+                                        <td *ngFor="let jornada of jornades; let i = index"  class="center-col">
                                             {{ showFormatedFreeThrows(participant, i + 1) }}
                                         </td>
-                                        <td class="text-info">
+                                        <td class="text-info center-col">
                                             {{participant.totalTirsLliures}}
                                         </td>
                                     </tr>
