@@ -4,7 +4,7 @@ import { DataService } from 'app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalFunctionsService } from 'app/services/global-functions.service';
 import { GlobalStateService } from 'app/services/global-state.service';
-import { ShotStatus } from 'app/models/Serie';
+import { ShotStatus } from 'app/models/serie';
 import { Subscription } from 'rxjs';
 
 @Component({

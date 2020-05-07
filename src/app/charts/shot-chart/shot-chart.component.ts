@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Serie, ShotStatus } from 'app/models/Serie';
+import { Serie, ShotStatus } from 'app/models/serie';
 import { GlobalStateService } from 'app/services/global-state.service';
 import { GlobalFunctionsService } from 'app/services/global-functions.service';
 
@@ -18,6 +18,7 @@ export class ShotChartComponent implements OnInit {
   @Input() bigChart: boolean = false;
 
   public percentages: number[];
+  public globalFS = this._gfs;
 
   constructor(private _gss: GlobalStateService, private _gfs: GlobalFunctionsService) { }
 

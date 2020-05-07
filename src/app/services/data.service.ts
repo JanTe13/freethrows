@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Participant } from 'app/models/participant';
 import { ModelConversorService } from './model-conversor.service';
-import { Serie } from 'app/models/Serie';
+import { Serie } from 'app/models/serie';
 import { Observable } from 'rxjs';
+import { Configuracio } from 'app/configuration/configuration.component';
 
 @Injectable({
   providedIn: 'root'
@@ -98,6 +99,14 @@ export class DataService {
       'codi_participant': serie.codiParticipant,
       'jornada': serie.jornada,
       'sequencia': sequencia
+    });
+  }
+
+  public saveConfiguration(config: Configuracio): void {
+    this._db.database.ref('/configuracio').set({
+      'jornades': config.jornades,
+      'rebotejadors': config.rebotejadors,
+      'tirsLliures': config.tirsLL
     });
   }
 

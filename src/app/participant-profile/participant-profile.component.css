@@ -21,3 +21,15 @@ i.back {
 .center-col {
     text-align: center;
 }
+
+.col-75 {
+    width: 75%;
+}
+
+.col-50 {
+    width: 50%;
+}
+
+.col-25 {
+    width: 25%;
+}

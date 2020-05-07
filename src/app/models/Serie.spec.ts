@@ -1,4 +1,4 @@
-import { Serie } from './Serie';
+import { Serie } from './serie';
 
 describe('Serie', () => {
   it('should create an instance', () => {

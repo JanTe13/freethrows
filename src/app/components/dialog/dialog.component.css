@@ -11,19 +11,19 @@ p {
     margin-top: 20px;
 }
 
-.btn-white {
+.btn-dialog {
     background-color: white;
     color: black;
     box-shadow: none;
 }
 
-.btn-white:hover {
+.btn-dialog:hover {
     background-color: #efeeee;
     color: black;
     box-shadow: none;
 }
 
-.btn-white:focus {
+.btn-dialog:focus {
     color: black;
     background-color: #d1d1d1;
     box-shadow: none;

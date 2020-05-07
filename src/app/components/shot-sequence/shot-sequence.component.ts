@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ShotStatus } from 'app/models/Serie';
+import { ShotStatus } from 'app/models/serie';
 
 @Component({
   selector: 'app-shot-sequence',

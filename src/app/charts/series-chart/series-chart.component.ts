@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as Chartist from 'chartist';
 import { GlobalStateService } from 'app/services/global-state.service';
-import { Serie } from 'app/models/Serie';
+import { Serie } from 'app/models/serie';
 import { Participant } from 'app/models/participant';
 
 @Component({

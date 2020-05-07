@@ -3,7 +3,7 @@ import { Participant } from 'app/models/participant';
 import { DataService } from 'app/services/data.service';
 import { GlobalStateService } from 'app/services/global-state.service';
 import { take } from 'rxjs/operators';
-import { Serie, ShotStatus } from 'app/models/Serie';
+import { Serie, ShotStatus } from 'app/models/serie';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'app/components/dialog/dialog.component';
 

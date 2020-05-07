@@ -1,4 +1,4 @@
-import { Serie } from "./Serie";
+import { Serie } from "./serie";
 
 export class Participant {
     private _codi: string;

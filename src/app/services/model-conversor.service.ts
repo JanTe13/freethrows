@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Participant } from 'app/models/participant';
-import { Serie, ShotStatus } from 'app/models/Serie';
+import { Serie, ShotStatus } from 'app/models/serie';
 
 @Injectable({
   providedIn: 'root'

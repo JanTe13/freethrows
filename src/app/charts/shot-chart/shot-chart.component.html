@@ -7,7 +7,8 @@
             <div class="row">
                 <div *ngFor="let pTir of percentages; let i = index" class="col-md-4 col-33 circle-chart-box">
                     <div class="circle-chart missed" [ngClass]="{'made': (pTir >= 75 && pTir <= 100), 
-                        'good': (pTir < 75 && pTir >= 50), 'regular': (pTir < 50 && pTir >= 25), 'big-circle-chart': bigChart}">
+                        'good': (pTir < 75 && pTir >= 50), 'regular': (pTir < 50 && pTir >= 25), 
+                        'big-circle-chart': bigChart && !globalFS.isMobile()}">
                         <div>Tir {{i + 1}}</div>
                         <span class="stats-perc">{{pTir}}%</span>
                     </div>

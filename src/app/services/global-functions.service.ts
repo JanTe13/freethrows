@@ -23,4 +23,11 @@ export class GlobalFunctionsService {
   decimalRound(value: number, round: string = '1.0-1'): string {
     return this._decimalPipe.transform(value, round);
   }
+
+  isMobile() {
+    if ($(window).width() > 1024) {
+        return false;
+    }
+    return true;
+  }
 }

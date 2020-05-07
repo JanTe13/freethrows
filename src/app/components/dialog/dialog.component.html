@@ -4,6 +4,6 @@
     <p *ngIf="data.secText != null">{{data.secText}}</p>
 </div>
 <div mat-dialog-actions class="actions">
-    <button mat-raised-button class="btn btn-white" (click)="onClick(false)" cdkFocusInitial>Cancel·la</button>
-    <button mat-raised-button class="btn btn-white" (click)="onClick(true)">{{data.textButton ? data.textButton : 'Accepta'}}</button>
+    <button mat-raised-button class="btn btn-dialog" (click)="onClick(false)" cdkFocusInitial>Cancel·la</button>
+    <button mat-raised-button class="btn btn-dialog" (click)="onClick(true)">{{data.textButton ? data.textButton : 'Accepta'}}</button>
 </div>

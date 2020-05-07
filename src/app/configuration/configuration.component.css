@@ -1,0 +1,22 @@
+.folder {
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.folder:hover {
+    color: #a0a0a0;
+}
+
+.col-50 {
+    width: 50%;
+}
+  
+/* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #00acc1 !important;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+    background-color: #00acc1 !important;
+}

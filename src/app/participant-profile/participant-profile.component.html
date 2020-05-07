@@ -20,22 +20,22 @@
                                         <img class="img" src="./assets/img/faces/marc.jpg" />
                                     </div>
                                 </div> -->
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-75">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Nom" type="text" [value]="participant?.nom" disabled>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-25">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Codi" type="text" [value]="participant?.codi" disabled>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-50">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Curs" type="text" [value]="participant?.curs" disabled>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-50">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Sexe" type="text" [value]="participant?.sexe" disabled>
                                     </mat-form-field>
@@ -59,59 +59,61 @@
                     <div class="card-body">
                         <div class="row" *ngIf="showStats()">
                             <div class="col-md-6">
-                                <table class="table" style="border-bottom: 1px solid #f0e9d0">
-                                    <thead class=" text-info">
-                                        <th></th>
-                                        <th class="center-col">
-                                            <span>Tirs</span>
-                                        </th>
-                                        <th class="center-col">
-                                            <span>%</span>
-                                        </th>
-                                        <th class="center-col">
-                                            <span>Seqüència</span>
-                                        </th>
-                                        <th class="center-col">
-                                            <span>Total</span>
-                                        </th>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let tirs of participant?.seriesTLL; let i = index">
-                                            <td>
-                                                <strong>J{{tirs.jornada}}</strong>
-                                            </td>
-                                            <td class="center-col">
-                                                {{ getFormatedTirs(tirs.jornada) }}
-                                            </td>
-                                            <td class="center-col">
-                                                {{ getPercentage(tirs.jornada) }}
-                                            </td>
-                                            <td class="center-col">
-                                                <app-shot-sequence
-                                                    [shotSequence]="participant.getSequenciaTirsLliures(tirs.jornada)"
-                                                ></app-shot-sequence>
-                                            </td>
-                                            <td class="text-info center-col">
-                                                {{ participant.getTirsLliuresAnotats(tirs.jornada) }}
-                                            </td>
-                                        </tr>
-                                        <tr *ngIf="participant?.seriesTLL.length > 0" style="background-color: #ffd7002b;">
-                                            <td>
-                                                <strong>Total</strong>
-                                            </td>
-                                            <td class="center-col">
-                                                {{ getFormatedTirs() }}
-                                            </td>
-                                            <td class="center-col">
-                                                {{ getPercentage() }}
-                                            </td>
-                                            <td></td>
-                                            <td class="text-info center-col">
-                                                {{ participant?.getTirsLliuresAnotats() }}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-bottom: 1px solid #f0e9d0;">
+                                        <thead class=" text-info">
+                                            <th></th>
+                                            <th class="center-col">
+                                                <span>Tirs</span>
+                                            </th>
+                                            <th class="center-col">
+                                                <span>%</span>
+                                            </th>
+                                            <th class="center-col">
+                                                <span>Seqüència</span>
+                                            </th>
+                                            <th class="center-col">
+                                                <span>Total</span>
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let tirs of participant?.seriesTLL; let i = index">
+                                                <td>
+                                                    <strong>J{{tirs.jornada}}</strong>
+                                                </td>
+                                                <td class="center-col">
+                                                    {{ getFormatedTirs(tirs.jornada) }}
+                                                </td>
+                                                <td class="center-col">
+                                                    {{ getPercentage(tirs.jornada) }}
+                                                </td>
+                                                <td class="center-col">
+                                                    <app-shot-sequence
+                                                        [shotSequence]="participant.getSequenciaTirsLliures(tirs.jornada)"
+                                                    ></app-shot-sequence>
+                                                </td>
+                                                <td class="text-info center-col">
+                                                    {{ participant.getTirsLliuresAnotats(tirs.jornada) }}
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="participant?.seriesTLL.length > 0" style="background-color: #ffd7002b;">
+                                                <td>
+                                                    <strong>Total</strong>
+                                                </td>
+                                                <td class="center-col">
+                                                    {{ getFormatedTirs() }}
+                                                </td>
+                                                <td class="center-col">
+                                                    {{ getPercentage() }}
+                                                </td>
+                                                <td></td>
+                                                <td class="text-info center-col">
+                                                    {{ participant?.getTirsLliuresAnotats() }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <app-shot-chart [series]="participant?.seriesTLL" [bigChart]="true"></app-shot-chart>
